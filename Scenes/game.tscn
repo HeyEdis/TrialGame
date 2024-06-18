@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://wu31obogwcf2"]
+[gd_scene load_steps=23 format=3 uid="uid://wu31obogwcf2"]
 
 [ext_resource type="PackedScene" uid="uid://dpsdl28nrxoth" path="res://Scenes/player.tscn" id="1_1ng2y"]
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_75c2n"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dxemaopdbk7e" path="res://Scenes/killzone.tscn" id="5_kobc2"]
 [ext_resource type="PackedScene" uid="uid://b3ls7t65g77si" path="res://Scenes/slime.tscn" id="6_k04vv"]
 [ext_resource type="FontFile" uid="uid://4omnmpko8tvb" path="res://Assets/fonts/PixelOperator8.ttf" id="7_5dee0"]
+[ext_resource type="PackedScene" uid="uid://cdrdmsetlnr2m" path="res://Scenes/fruit.tscn" id="10_ul1es"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lkujk"]
 texture = ExtResource("2_cjso5")
@@ -454,7 +455,8 @@ _data = {
 }
 
 [sub_resource type="Animation" id="Animation_amobm"]
-length = 0.001
+length = 1.5
+loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -462,10 +464,10 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(850, -90)]
+"values": [Vector2(827, -166), Vector2(920, -166)]
 }
 
 [sub_resource type="Animation" id="Animation_7u37l"]
@@ -491,6 +493,21 @@ _data = {
 "move": SubResource("Animation_7u37l")
 }
 
+[sub_resource type="Animation" id="Animation_sff8m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(213, -277)]
+}
+
 [sub_resource type="Animation" id="Animation_knhrl"]
 resource_name = "move"
 length = 0.7
@@ -506,21 +523,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(213, -277), Vector2(185, -277)]
-}
-
-[sub_resource type="Animation" id="Animation_sff8m"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(213, -277)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kmn8s"]
@@ -604,10 +606,10 @@ position = Vector2(463, 29)
 position = Vector2(559, -20)
 
 [node name="Coin8" parent="Coins" instance=ExtResource("4_qhqlx")]
-position = Vector2(641, -84)
+position = Vector2(657, -148)
 
 [node name="Coin9" parent="Coins" instance=ExtResource("4_qhqlx")]
-position = Vector2(752, -115)
+position = Vector2(757, -182)
 
 [node name="Coin10" parent="Coins" instance=ExtResource("4_qhqlx")]
 position = Vector2(932, 29)
@@ -619,7 +621,7 @@ position = Vector2(849, 29)
 position = Vector2(833, 29)
 
 [node name="Coin11" parent="Coins" instance=ExtResource("4_qhqlx")]
-position = Vector2(1040, -116)
+position = Vector2(1040, -181)
 
 [node name="Coin5" parent="Coins" instance=ExtResource("4_qhqlx")]
 position = Vector2(157, 13)
@@ -651,14 +653,14 @@ libraries = {
 autoplay = "RESET"
 
 [node name="Platform3" parent="Platforms" instance=ExtResource("3_b20m5")]
-position = Vector2(850, -90)
+position = Vector2(827, -166)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Platforms/Platform3"]
 root_node = NodePath("../../Platform3")
 libraries = {
 "": SubResource("AnimationLibrary_xfa0d")
 }
-autoplay = "move"
+autoplay = "RESET"
 
 [node name="Platform4" parent="Platforms" instance=ExtResource("3_b20m5")]
 position = Vector2(595, -113)
@@ -734,11 +736,14 @@ text = "what goes up?"
 
 [node name="Label5" type="Label" parent="Labels"]
 offset_left = 1055.0
-offset_top = -131.0
+offset_top = -203.0
 offset_right = 1168.0
-offset_bottom = -91.0
+offset_bottom = -163.0
 scale = Vector2(0.751769, 0.966811)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_5dee0")
 theme_override_font_sizes/font_size = 8
 text = "must come down."
+
+[node name="Fruit" parent="." instance=ExtResource("10_ul1es")]
+position = Vector2(0, -79)
