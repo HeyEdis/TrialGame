@@ -748,6 +748,5 @@ text = "must come down."
 [node name="Fruit" parent="." instance=ExtResource("10_ul1es")]
 position = Vector2(0, -79)
 
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-color = Color(0, 0, 0, 1)
-energy = 1.6
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.447354, 0.186838, 0.12333, 1)
