@@ -749,4 +749,4 @@ text = "must come down."
 position = Vector2(0, -79)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.447354, 0.186838, 0.12333, 1)
+color = Color(0, 0, 0, 1)
